@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ade Sity Zhahara | Informatics Engineering Student ꨄ︎</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; transition: all 0.3s ease; }
+        body.light { --bg: linear-gradient(135deg, #f5bed0, #d2b1bb); --text: #4a2c3a; --card-bg: rgba(250,200,225,0.85); --border: #f390a9; --badge: #ffdee9; --badge-text: #b13e62; --footer: #ffecf1; --rainbow: linear-gradient(90deg,#ff6b6b,#ff9b6b,#ffd93b,#6bcb77,#4d96ff,#b56bff,#ff6b6b); --shadow: 0 20px 40px -12px rgba(236,72,153,0.15); }
+        body.dark { --bg: linear-gradient(135deg, #54223e, #2a1a30); --text: #f3dce8; --card-bg: rgba(30,20,40,0.85); --border: #b13e62; --badge: #381628; --badge-text: #ffb7cf; --footer: #1f1528; --rainbow: linear-gradient(90deg,#ff8888,#ffaa88,#ffe888,#88ff88,#8888ff,#cc88ff,#ff8888); --shadow: 0 20px 30px -12px rgba(0,0,0,0.4); }
+        body { background: var(--bg); color: var(--text); }
+        .nav { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); background: var(--card-bg); backdrop-filter: blur(20px); border-radius: 60px; padding: 12px 28px; display: flex; gap: 2rem; z-index: 1000; border: 1px solid var(--border); }
+        .nav a { color: #c4456e; font-size: 1.5rem; text-decoration: none; transition: 0.2s; }
+        .nav a:hover { color: #ff2e6e; transform: translateY(-4px); }
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem; }
+        .avatar { width: 170px; height: 170px; margin: 0 auto 1.5rem; background: linear-gradient(135deg,#ffb3d1,#ff6f91); border-radius: 50%; padding: 5px; animation: float 3s ease-in-out infinite; }
+        .avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 3px solid white; }
+        @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+        h1 { font-size: 3rem; font-weight: 800; background: linear-gradient(135deg,#d43f6b,#b52e5c); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .badge { background: var(--badge); padding: 6px 16px; border-radius: 40px; display: inline-block; font-size: 0.85rem; font-weight: 600; color: var(--badge-text); }
+        .rainbow-card { background: var(--card-bg); border-radius: 2rem; padding: 1.5rem; position: relative; box-shadow: var(--shadow); transition: all 0.3s ease; }
+        .rainbow-card::before { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: var(--rainbow); border-radius: 2rem; z-index: -1; animation: rainbowMove 4s linear infinite; background-size: 200% 200%; }
+        @keyframes rainbowMove { 0%,100%{background-position:0% 50%;} 50%{background-position:100% 50%;} }
+        .rainbow-card:hover { transform: translateY(-5px); }
+        .skill-item { background: var(--card-bg); border-radius: 2rem; padding: 0.8rem 1.5rem; text-align: center; font-weight: 600; position: relative; box-shadow: var(--shadow); transition: all 0.3s ease; }
+        .skill-item::before { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: var(--rainbow); border-radius: 2rem; z-index: -1; animation: rainbowMove 4s linear infinite; background-size: 200% 200%; }
+        .skill-item:hover { transform: translateY(-5px); }
+        .skill-item i { margin-right: 8px; color: #e85d8f; }
+        .media-card { background: var(--card-bg); border-radius: 1.8rem; overflow: hidden; position: relative; box-shadow: var(--shadow); transition: all 0.3s ease; height: 100%; }
+        .media-card::before { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: var(--rainbow); border-radius: 1.8rem; z-index: -1; animation: rainbowMove 4s linear infinite; background-size: 200% 200%; }
+        .media-card:hover { transform: translateY(-10px); }
+        .media-header { background: linear-gradient(145deg,#ffc0dc,#ff9bc0); padding: 1rem; text-align: center; color: white; }
+        .media-content { padding: 1.2rem; }
+        .spotify-embed { border-radius: 12px; width: 100%; margin-bottom: 0.8rem; }
+        .artist-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; justify-content: center; }
+        .artist-link { background: rgba(255,105,180,0.2); padding: 8px 16px; border-radius: 30px; text-decoration: none; color: var(--text); transition: 0.2s; display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; font-weight: 500; }
+        .artist-link:hover { background: #f472b6; color: white; transform: translateY(-2px); }
+        .movie-list { list-style: none; padding: 0; }
+        .movie-list li { padding: 12px 0; border-bottom: 1px solid rgba(255,105,180,0.3); display: flex; align-items: center; gap: 12px; }
+        .movie-list li i { color: #e85d8f; width: 28px; font-size: 1.2rem; }
+        .movie-list li a { flex: 1; text-decoration: none; color: var(--text); transition: 0.2s; font-weight: 500; }
+        .movie-list li a:hover { color: #f472b6; text-decoration: underline; }
+        .movie-list li .netflix-badge { background: #e50914; color: white; font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; margin-left: 8px; }
+        .social-link { display: inline-flex; align-items: center; justify-content: center; width: 55px; height: 55px; background: #ffe2ec; border-radius: 50%; font-size: 1.8rem; color: #c4456e; text-decoration: none; transition: 0.2s; }
+        .social-link:hover { background: #f472b6; color: white; transform: translateY(-6px); }
+        .toggle-btn { background: rgba(255,255,240,0.2); border: 1px solid #ff99cc; padding: 8px 18px; border-radius: 40px; cursor: pointer; font-size: 0.85rem; color: var(--text); margin: 0 5px; }
+        .toggle-btn:hover, .toggle-btn.active { background: #ff99cc; color: white; }
+        input, textarea { background: rgba(255,245,250,0.5); border: 1px solid var(--border); border-radius: 60px; padding: 14px 20px; width: 100%; font-family: inherit; color: var(--text); }
+        input:focus, textarea:focus { outline: none; border-color: #f472b6; }
+        footer { background: var(--footer); border-radius: 2rem 2rem 0 0; padding: 2rem; text-align: center; }
+        .container { max-width: 1200px; margin: auto; padding: 0 15px; }
+        .row { display: flex; flex-wrap: wrap; }
+        .col-md-3, .col-md-4, .col-md-6 { padding: 12px; }
+        .col-md-3 { width: 25%; } .col-md-4 { width: 33.333%; } .col-md-6 { width: 50%; }
+        .col-6 { width: 50%; padding: 12px; }
+        .text-center { text-align: center; }
+        .mb-3 { margin-bottom: 1rem; } .mb-4 { margin-bottom: 1.5rem; } .mb-5 { margin-bottom: 2.5rem; }
+        .mt-2 { margin-top: 0.5rem; } .mt-3 { margin-top: 1rem; } .mt-4 { margin-top: 1.5rem; }
+        .py-5 { padding: 3rem 0; }
+        .d-flex { display: flex; } .justify-center { justify-content: center; } .gap-4 { gap: 1.5rem; } .flex-wrap { flex-wrap: wrap; }
+        .fw-bold { font-weight: 700; } .small { font-size: 0.85rem; } .fs-4 { font-size: 1.5rem; }
+        @media (max-width: 768px) { h1 { font-size: 2rem; } .col-md-3, .col-md-4, .col-md-6 { width: 100%; } .col-6 { width: 50%; } .nav { gap: 1rem; padding: 8px 20px; } .nav a { font-size: 1.2rem; } }
+    </style>
+</head>
+<body class="light">
+    <div class="nav">
+        <a href="#home"><i class="fas fa-home"></i></a>
+        <a href="#about"><i class="fas fa-user"></i></a>
+        <a href="#skills"><i class="fas fa-code"></i></a>
+        <a href="#media"><i class="fas fa-music"></i></a>
+        <a href="#contact"><i class="fas fa-paper-plane"></i></a>
+    </div>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="avatar"><img src="asz.jpeg" alt="Ade"></div>
+            <div class="badge" id="badgeText"> Informatics Engineering Student ꨄ</div>
+            <h1>Ade Sity Zhahara</h1>
+            <p class="fs-4" style="opacity:0.8" id="heroTagline">Blending tech and creativity. Singer | Editor | Designer | Drawing Enthusiast</p>
+            <div class="mt-4">
+                <button id="indBtn" class="toggle-btn active"><i class="fas fa-flag"></i> Indonesia</button>
+                <button id="engBtn" class="toggle-btn"><i class="fas fa-flag-usa"></i> English</button>
+                <button id="lightBtn" class="toggle-btn"><i class="fas fa-sun"></i> Light</button>
+                <button id="darkBtn" class="toggle-btn"><i class="fas fa-moon"></i> Dark</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge" id="aboutBadge"><i class="fas fa-star-of-life"></i> About Me</span>
+                <h2 class="mt-3">Get to Know <span style="background:linear-gradient(135deg,#f9a8d4,#f472b6);-webkit-background-clip:text;background-clip:text;color:transparent;">Ade</span></h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="rainbow-card">
+                        <h3><i class="fas fa-heart" style="color:#f472b6;"></i> <span id="bioTitle">Creative Bio</span></h3>
+                        <p class="mt-3" id="bioText">Halo! Saya Ade — seorang tech enthusiast yang percaya bahwa kode dan seni bisa berjalan beriringan. Saya suka bernyanyi, mengedit video, mendesain di Canva, dan menggambar ilustrasi. Yuk, kolaborasi! 💻✨</p>
+                        <div class="mt-4">
+                            <p><i class="fas fa-map-marker-alt" style="color:#f472b6;"></i> <span id="location">Indonesia · Open for collabs</span></p>
+                            <p><i class="fas fa-music" style="color:#f472b6;"></i> <span id="hobbies">Hobbies: Singing, Drawing, Editing & Design</span></p>
+                            <p><i class="fas fa-envelope" style="color:#f472b6;"></i> <span id="emailDisplay">adesity06@gmail.com</span></p>
+                            <p><i class="fas fa-laptop-code" style="color:#f472b6;"></i> <span id="hashtag">#TechGirl #CreativeHybrid</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="rainbow-card">
+                        <h3><i class="fas fa-graduation-cap"></i> <span id="educationTitle">Education Journey</span></h3>
+                        <div class="mt-3">
+                            <p><strong>MIN 15 Pidie (2012-2017)</strong><br><a href="https://www.min15pidie.sch.id/" target="_blank" style="color:#f472b6;">min15pidie.sch.id</a></p>
+                            <p><strong>SMPN 2 Padang Tiji (2018-2020)</strong><br><a href="https://id4691011-smpn-2-padang-tiji.contact.page/" target="_blank" style="color:#f472b6;">School Profile</a></p>
+                            <p><strong>SMANSA Padang Tiji (2021-2023)</strong><br><a href="https://www.instagram.com/smansa.padangtiji/" target="_blank" style="color:#f472b6;">Instagram @smansa.padangtiji</a></p>
+                            <p><strong>Universitas Jabal Ghafur (2025-sekarang)</strong><br><a href="https://www.unigha.ac.id/" target="_blank" style="color:#f472b6;">unigha.ac.id</a></p>
+                        </div>
+                        <div class="mt-3"><i class="fas fa-diploma"></i> <span id="educationFooter">Currently studying Informatics Engineering at Unigha</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-5" style="background:rgba(255,235,242,0.2)">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge"><i class="fas fa-cog"></i> <span id="skillsBadge">Superpowers</span></span>
+                <h2 class="mt-3"><span id="skillsTitle">My Skills</span></h2>
+            </div>
+            <div class="row justify-center">
+                <div class="col-6 col-md-3"><div class="skill-item"><i class="fas fa-microphone-alt"></i> <span id="skill1">Singing</span></div></div>
+                <div class="col-6 col-md-3"><div class="skill-item"><i class="fas fa-video"></i> <span id="skill2">Video Editing</span></div></div>
+                <div class="col-6 col-md-3"><div class="skill-item"><i class="fas fa-palette"></i> <span id="skill3">Canva Design</span></div></div>
+                <div class="col-6 col-md-3"><div class="skill-item"><i class="fas fa-pencil-ruler"></i> <span id="skill4">Drawing</span></div></div>
+                <div class="col-6 col-md-3"><div class="skill-item"><i class="fab fa-google"></i> <span id="skill5">Googling Skill</span></div></div>
+                <div class="col-6 col-md-3"><div class="skill-item"><i class="fas fa-desktop"></i> <span id="skill6">Basic Computer Skills</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="media" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge"><i class="fas fa-headphones"></i> <span id="mediaBadge">My Favorites</span></span>
+                <h2 class="mt-3"><span id="mediaTitle">Music & </span><span style="color:#db5885;" id="mediaHighlight">Movies</span></h2>
+                <p id="mediaSubtitle">What I'm listening to & watching lately 🎵🎬</p>
+            </div>
+            <div class="row">
+                <!-- Spotify Section -->
+                <div class="col-md-6">
+                    <div class="media-card">
+                        <div class="media-header"><i class="fab fa-spotify fa-2x"></i><h4 class="mt-2">🎧 My Favorite Music</h4></div>
+                        <div class="media-content">
+                            <!-- Album -->
+                            <iframe class="spotify-embed" src="https://open.spotify.com/embed/album/58eNU0JJvtAWAg9KUZ9Ghf?utm_source=generator" width="100%" height="200" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                            <!-- Artists -->
+                            <div class="artist-list">
+                                <a href="https://open.spotify.com/artist/4YRxDV8wJFPHPTeXepOstw?si=1YBZYzL2Te6ESOhGdbQpnw" target="_blank" class="artist-link"><i class="fab fa-spotify"></i> Ariana Grande</a>
+                                <a href="https://open.spotify.com/artist/0LnHdW6HMPoOlNdhG3DHjE?si=yr9bZmoFTe6EjfW8qFo9jA" target="_blank" class="artist-link"><i class="fab fa-spotify"></i> Taylor Swift</a>
+                                <a href="https://open.spotify.com/artist/2Wk167T0fY1fABsHM5qFcI?si=YQyTeIXORzqaTOunZGrR8A" target="_blank" class="artist-link"><i class="fab fa-spotify"></i> Billie Eilish</a>
+                            </div>
+                            <p class="small text-center mt-2" style="opacity:0.7">✨ My go-to playlist & artists ✨</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Movies Section -->
+                <div class="col-md-6">
+                    <div class="media-card">
+                        <div class="media-header"><i class="fas fa-film fa-2x"></i><h4 class="mt-2">📺 Movies I've Watched</h4></div>
+                        <div class="media-content">
+                            <ul class="movie-list">
+                                <li><i class="fas fa-crown"></i> <a href="https://www.netflix.com/search?q=Matilda" target="_blank">Matilda (1996) <span class="netflix-badge">Watch on Netflix</span></a></li>
+                                <li><i class="fas fa-hat-wizard"></i> <a href="https://www.netflix.com/search?q=The%20School%20for%20Good%20and%20Evil" target="_blank">The School for Good and Evil <span class="netflix-badge">Watch on Netflix</span></a></li>
+                                <li><i class="fas fa-cloud-moon"></i> <a href="https://www.netflix.com/search?q=Slumberland" target="_blank">Slumberland <span class="netflix-badge">Watch on Netflix</span></a></li>
+                                <li><i class="fas fa-dragon"></i> <a href="https://www.netflix.com/search?q=Damsel" target="_blank">Damsel <span class="netflix-badge">Watch on Netflix</span></a></li>
+                                <li><i class="fas fa-ghost"></i> <a href="https://www.netflix.com/search?q=Miss%20Peregrine" target="_blank">Miss Peregrine's Home for Peculiar Children <span class="netflix-badge">Watch on Netflix</span></a></li>
+                            </ul>
+                            <p class="small text-center mt-3" style="opacity:0.7">💖 Love fantasy & magical adventures! Click to watch on Netflix 💖</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5" style="background:var(--footer)">
+        <div class="container">
+            <div class="text-center mb-4">
+                <span class="badge"><i class="fas fa-heart"></i> <span id="contactBadge">Connect</span></span>
+                <h2 class="mt-3"><span id="contactTitle">Find Me on Socials</span></h2>
+            </div>
+            <div class="d-flex justify-center gap-4 flex-wrap mb-5">
+                <a href="https://www.instagram.com/adstzhr06" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/6285262137428" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.tiktok.com/@adszhr179" target="_blank" class="social-link"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="rainbow-card">
+                        <h5><i class="fas fa-envelope"></i> <span id="formTitle">Send a Message</span></h5>
+                        <form id="contactForm">
+                            <input type="text" id="nameInput" class="mb-3" placeholder="Your Name" style="width:100%">
+                            <input type="email" id="emailInput" class="mb-3" placeholder="Email" style="width:100%">
+                            <textarea rows="3" id="msgInput" class="mb-3" placeholder="Your message..." style="width:100%"></textarea>
+                            <button type="submit" class="toggle-btn" style="background:#ff99cc; color:white"><i class="fas fa-paper-plane"></i> <span id="sendBtn">Send</span></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="rainbow-card">
+                        <h5><i class="fas fa-eye"></i> <span id="previewTitle">Live Preview</span></h5>
+                        <div style="background:rgba(255,242,247,0.2); border-radius:24px; padding:18px; margin-top:16px">
+                            <p class="fw-bold" id="previewName">✨ Name: -</p>
+                            <p class="small" id="previewEmail">📧 Email: -</p>
+                            <p class="mt-2" id="previewMsg">💬 Your message preview...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer><p id="footerText">© 2026 Ade Sity Zhahara — Informatics Engineering Student blending tech & creativity</p></footer>
+
+    <script>
+        const data = {
+            ind: {
+                badgeText: " Informatics Engineering Student ꨄ",
+                heroTagline: "Menyatukan teknologi dan kreativitas. Penyanyi | Editor | Desainer | Penggemar Gambar",
+                aboutBadge: "<i class='fas fa-star-of-life'></i> Tentang Saya",
+                bioTitle: "Bio Kreatif",
+                bioText: "Halo! Saya Ade — seorang tech enthusiast yang percaya bahwa kode dan seni bisa berjalan beriringan. Saya suka bernyanyi, mengedit video, mendesain di Canva, dan menggambar ilustrasi. Setiap proyek saya kerjakan dengan penuh perhatian terhadap detail dan sentuhan estetika yang lembut. Yuk, kolaborasi! 💻✨",
+                location: "Indonesia · Terbuka untuk kolaborasi",
+                hobbies: "Hobi: Menyanyi, Menggambar, Editing & Desain",
+                emailDisplay: "adesity06@gmail.com",
+                hashtag: "#TechGirl #KreatifHybrid",
+                educationTitle: "Perjalanan Pendidikan",
+                educationFooter: "Saat ini mahasiswa Teknik Informatika di Unigha",
+                skillsBadge: "Kemampuan", skillsTitle: "Keahlianku",
+                skill1: "Menyanyi", skill2: "Editing Video", skill3: "Desain Canva", skill4: "Menggambar",
+                skill5: "Googling Skill", skill6: "Dasar Komputer",
+                mediaBadge: "Favoritku", mediaTitle: "Musik & ", mediaHighlight: "Film",
+                mediaSubtitle: "Yang sedang aku putar & tonton akhir-akhir ini 🎵🎬",
+                contactBadge: "Terhubung", contactTitle: "Temukan Aku di Medsos",
+                formTitle: "Kirim Pesan", sendBtn: "Kirim", previewTitle: "Pratinjau Langsung",
+                footerText: "© 2026 Ade Sity Zhahara — Informatics Engineering Student menyatukan teknologi & kreativitas"
+            },
+            eng: {
+                badgeText: " Informatics Engineering Student ꨄ",
+                heroTagline: "Blending tech and creativity. Singer | Editor | Designer | Drawing Enthusiast",
+                aboutBadge: "<i class='fas fa-star-of-life'></i> About Me",
+                bioTitle: "Creative Bio",
+                bioText: "Hi! I'm Ade — a tech enthusiast who believes that code and art can go hand in hand. I love singing, editing videos, designing with Canva, and drawing illustrations. Let's collaborate! 💻✨",
+                location: "Indonesia · Open for collabs",
+                hobbies: "Hobbies: Singing, Drawing, Editing & Design",
+                emailDisplay: "adesity06@gmail.com",
+                hashtag: "#TechGirl #CreativeHybrid",
+                educationTitle: "Education Journey",
+                educationFooter: "Currently studying Informatics Engineering at Unigha",
+                skillsBadge: "Superpowers", skillsTitle: "My Skills",
+                skill1: "Singing", skill2: "Video Editing", skill3: "Canva Design", skill4: "Drawing",
+                skill5: "Googling Skill", skill6: "Basic Computer Skills",
+                mediaBadge: "My Favorites", mediaTitle: "Music & ", mediaHighlight: "Movies",
+                mediaSubtitle: "What I'm listening to & watching lately 🎵🎬",
+                contactBadge: "Connect", contactTitle: "Find Me on Socials",
+                formTitle: "Send a Message", sendBtn: "Send", previewTitle: "Live Preview",
+                footerText: "© 2026 Ade Sity Zhahara — Informatics Engineering Student blending tech & creativity"
+            }
+        };
+
+        let currentLang = 'ind';
+        function updateLanguage(lang) {
+            const d = data[lang];
+            document.getElementById('badgeText').innerHTML = d.badgeText;
+            document.getElementById('heroTagline').innerText = d.heroTagline;
+            document.getElementById('aboutBadge').innerHTML = d.aboutBadge;
+            document.getElementById('bioTitle').innerText = d.bioTitle;
+            document.getElementById('bioText').innerText = d.bioText;
+            document.getElementById('location').innerText = d.location;
+            document.getElementById('hobbies').innerText = d.hobbies;
+            document.getElementById('emailDisplay').innerText = d.emailDisplay;
+            document.getElementById('hashtag').innerText = d.hashtag;
+            document.getElementById('educationTitle').innerText = d.educationTitle;
+            document.getElementById('educationFooter').innerText = d.educationFooter;
+            document.getElementById('skillsBadge').innerHTML = d.skillsBadge;
+            document.getElementById('skillsTitle').innerText = d.skillsTitle;
+            document.getElementById('skill1').innerText = d.skill1;
+            document.getElementById('skill2').innerText = d.skill2;
+            document.getElementById('skill3').innerText = d.skill3;
+            document.getElementById('skill4').innerText = d.skill4;
+            document.getElementById('skill5').innerText = d.skill5;
+            document.getElementById('skill6').innerText = d.skill6;
+            document.getElementById('mediaBadge').innerHTML = d.mediaBadge;
+            document.getElementById('mediaTitle').innerText = d.mediaTitle;
+            document.getElementById('mediaHighlight').innerText = d.mediaHighlight;
+            document.getElementById('mediaSubtitle').innerText = d.mediaSubtitle;
+            document.getElementById('contactBadge').innerHTML = d.contactBadge;
+            document.getElementById('contactTitle').innerText = d.contactTitle;
+            document.getElementById('formTitle').innerText = d.formTitle;
+            document.getElementById('sendBtn').innerText = d.sendBtn;
+            document.getElementById('previewTitle').innerText = d.previewTitle;
+            document.getElementById('footerText').innerText = d.footerText;
+        }
+
+        document.getElementById('indBtn').onclick = () => { updateLanguage('ind'); setActive('indBtn'); };
+        document.getElementById('engBtn').onclick = () => { updateLanguage('eng'); setActive('engBtn'); };
+        function setActive(activeId) {
+            ['indBtn','engBtn'].forEach(id => {
+                const btn = document.getElementById(id);
+                if(id === activeId) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+        }
+        document.getElementById('lightBtn').onclick = () => { document.body.classList.remove('dark'); document.body.classList.add('light'); };
+        document.getElementById('darkBtn').onclick = () => { document.body.classList.remove('light'); document.body.classList.add('dark'); };
+
+        const nameInput = document.getElementById('nameInput');
+        const emailInput = document.getElementById('emailInput');
+        const msgInput = document.getElementById('msgInput');
+        const previewName = document.getElementById('previewName');
+        const previewEmail = document.getElementById('previewEmail');
+        const previewMsg = document.getElementById('previewMsg');
+        function updatePreview() {
+            previewName.innerHTML = `✨ Name: ${nameInput.value.trim() || '-'}`;
+            previewEmail.innerHTML = `📧 Email: ${emailInput.value.trim() || '-'}`;
+            previewMsg.innerHTML = `💬 ${msgInput.value.trim() || 'Your message preview...'}`;
+        }
+        nameInput.addEventListener('input', updatePreview);
+        emailInput.addEventListener('input', updatePreview);
+        msgInput.addEventListener('input', updatePreview);
+
+        document.getElementById('contactForm').onsubmit = (e) => {
+            e.preventDefault();
+            alert(`💗 Terima kasih ${nameInput.value || '!'}, pesanmu sudah terkirim!`);
+            nameInput.value = ''; emailInput.value = ''; msgInput.value = '';
+            updatePreview();
+        };
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.onclick = (e) => {
+                e.preventDefault();
+                const id = link.getAttribute('href').substring(1);
+                document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            };
+        });
+    </script>
+</body>
+</html>
